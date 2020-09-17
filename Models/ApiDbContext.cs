@@ -132,7 +132,7 @@ namespace Rogue_Financial_API.Models
             return Database.ExecuteSqlCommand("[DeleteNotificationById] @Id",
                new SqlParameter("Id", Id));
         }
-        
+
         #endregion
         #region soft Delete By Id
         public int SoftDeleteHouseHoldById(int hhId)
@@ -160,12 +160,75 @@ namespace Rogue_Financial_API.Models
             return Database.ExecuteSqlCommand("[DeleteTransactionById] @Id",
                new SqlParameter("Id", Id));
         }
-   
+
+        #endregion
+        #region soft Delete By HouseHold
+
+        public int SoftDeleteBankAccountsByHouseHold(int hhId)
+        {
+            return Database.ExecuteSqlCommand("[SoftDeleteBankAccountsByHouseHold] @hhId",
+               new SqlParameter("ggId", hhId));
+        }
+        public int SoftDeleteBudgetByHouseHold(int hhId)
+        {
+            return Database.ExecuteSqlCommand("[SoftDeleteBudgetByHouseHold] @hhId",
+               new SqlParameter("hhId", hhId));
+        }
+        public int SoftDeleteBudgetItemByHouseHold(int hhId)
+        {
+            return Database.ExecuteSqlCommand("[SoftDeleteBudgetItemByHouseHold] @hhId",
+               new SqlParameter("hhId", hhId));
+        }
+        public int SoftDeleteMembersByHouseHold(int hhId)
+        {
+            return Database.ExecuteSqlCommand("[SoftDeleteMembersByHouseHold] @hhId",
+               new SqlParameter("hhId", hhId));
+        }
+        public int SoftDeleteTransactionByHouseHold(int hhId)
+        {
+            return Database.ExecuteSqlCommand("[SoftDeleteTransactionByHouseHold] @hhId",
+               new SqlParameter("hhId", hhId));
+        }
+
+        #endregion
+        #region soft Delete By Parent
+
+
+        public int SoftDeleteTransactionByBankAccount(int Id)
+        {
+            return Database.ExecuteSqlCommand("[SoftDeleteTransactionByBankAccount] @Id",
+               new SqlParameter("Id", Id));
+        }
+        public int SoftDeleteTransactionByBudget(int Id)
+        {
+            return Database.ExecuteSqlCommand("[SoftDeleteTransactionByBudget] @Id",
+               new SqlParameter("Id", Id));
+        }
+        public int SoftDeleteTransactionByBudgetItem(int Id)
+        {
+            return Database.ExecuteSqlCommand("[SoftDeleteTransactionByBudgetItem] @Id",
+               new SqlParameter("Id", Id));
+        }
+        public int SoftDeleteBudgetItemByBudget(int Id)
+        {
+            return Database.ExecuteSqlCommand("[SoftDeleteBudgetItemByBudget] @Id",
+               new SqlParameter("Id", Id));
+        }
+        public int SoftDeleteBudgetByBankAccount(int Id)
+        {
+            return Database.ExecuteSqlCommand("[SoftDeleteBudgetByBankAccount] @Id",
+               new SqlParameter("Id", Id));
+        }
+        public int SoftDeleteBudgetItemsByBankAccount(int Id)
+        {
+            return Database.ExecuteSqlCommand("[SoftDeleteBudgetItemsByBankAccount] @Id",
+               new SqlParameter("Id", Id));
+        }
         #endregion
         #region insert/created
         public int CreateHouseHold(string OwnerId, string HouseHoldName, string Greeting)
         {
-            return  Database.ExecuteSqlCommand("InsertHouseHoldData @OwnerId @HouseHoldName @Greeting",
+            return Database.ExecuteSqlCommand("InsertHouseHoldData @OwnerId @HouseHoldName @Greeting",
                 new SqlParameter("OwnerId", OwnerId),
                 new SqlParameter("HouseHoldName", HouseHoldName),
                 new SqlParameter("Greeting", Greeting));
@@ -192,7 +255,7 @@ namespace Rogue_Financial_API.Models
         }
         public int CreateBudgetItem(int HouseHoldId, string OwnerId, int BudgetId, string ItemName, string Description, decimal TargetAmount)
         {
-            return  Database.ExecuteSqlCommand("InsertBudgetItemData @HouseHoldId @OwnerId @BudgetId @ItemName @Description @TargetAmount",
+            return Database.ExecuteSqlCommand("InsertBudgetItemData @HouseHoldId @OwnerId @BudgetId @ItemName @Description @TargetAmount",
                 new SqlParameter("HouseHoldId", HouseHoldId),
                 new SqlParameter("OwnerId", OwnerId),
                 new SqlParameter("BudgetId", BudgetId),
@@ -204,7 +267,7 @@ namespace Rogue_Financial_API.Models
         }
         public int CreateTransaction(int OwnerId, int BankAccontId, int BudgetItemId, string TransactionType, string Amount, string Memo, string FilePath)
         {
-            return  Database.ExecuteSqlCommand("InsertTransactionData @OwnerId @BankAccontId @BudgetItemId @TransactionType @Amount @Memo @FilePath",
+            return Database.ExecuteSqlCommand("InsertTransactionData @OwnerId @BankAccontId @BudgetItemId @TransactionType @Amount @Memo @FilePath",
                 new SqlParameter("OwnerId", OwnerId),
                 new SqlParameter("BankAccontId", BankAccontId),
                 new SqlParameter("BudgetItemId", BudgetItemId),
@@ -214,7 +277,7 @@ namespace Rogue_Financial_API.Models
                 new SqlParameter("TargetAmount", FilePath)
                 );
         }
-        public  int CreateMember(string Id, string FirstName, string LastName, string Description, string AvatarPath, int HouseHoldId, string Email, string PhoneNumber, string UserName)
+        public int CreateMember(string Id, string FirstName, string LastName, string Description, string AvatarPath, int HouseHoldId, string Email, string PhoneNumber, string UserName)
         {
             return Database.ExecuteSqlCommand("InsertMemberData @Id @FirstName @LastName @Description @AvatarPath @HouseHoldId @Email @PhoneNumber @UserName",
                 new SqlParameter("Id", Id),
@@ -249,10 +312,10 @@ namespace Rogue_Financial_API.Models
                 new SqlParameter("AccountType", AccountType),
                 new SqlParameter("IsDeleted", IsDeleted));
         }
-        public int UpdateBudget( int Id, int BankAccontId, string BudgetName, string Description, int IsDeleted)
+        public int UpdateBudget(int Id, int BankAccontId, string BudgetName, string Description, int IsDeleted)
         {
             return Database.ExecuteSqlCommand("UpdateBudgetDataById @Id @BankAccontId @BudgetName @Description  @IsDeleted",
-               
+
                 new SqlParameter("Id", Id),
                 new SqlParameter("BankAccontId", BankAccontId),
                 new SqlParameter("BudgetName", BudgetName),
@@ -260,7 +323,7 @@ namespace Rogue_Financial_API.Models
                 new SqlParameter("IsDeleted", IsDeleted)
                 );
         }
-        public int UpdateBudgetItem(int Id, int BudgetId, string ItemName, string Description,  decimal TargetAmount, int IsDeleted)
+        public int UpdateBudgetItem(int Id, int BudgetId, string ItemName, string Description, decimal TargetAmount, int IsDeleted)
         {
             return Database.ExecuteSqlCommand("InsertBudgetItemData @Id @BudgetId @ItemName @Description  @TargetAmount @IsDeleted",
                 new SqlParameter("Id", Id),
@@ -280,7 +343,7 @@ namespace Rogue_Financial_API.Models
                 new SqlParameter("TransactionType", TransactionType),
                 new SqlParameter("Amount", Amount),
                 new SqlParameter("CurrentAmount", Memo),
-                new SqlParameter("FilePath", FilePath),               
+                new SqlParameter("FilePath", FilePath),
                 new SqlParameter("IsDeleted", IsDeleted)
 
                 );
@@ -299,6 +362,6 @@ namespace Rogue_Financial_API.Models
                 new SqlParameter("UserName", UserName)
                 );
         }
-#endregion
+        #endregion
     }
 }

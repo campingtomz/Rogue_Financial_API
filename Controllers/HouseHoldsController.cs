@@ -126,9 +126,14 @@ namespace Rogue_Financial_API.Controllers
 
         /// <returns></returns>
         [HttpPost, Route("SoftDeleteHouseHoldById")]
-        public IHttpActionResult SoftDeleteHouseHoldById(int Id)
+        public IHttpActionResult SoftDeleteHouseHoldById(int hhId)
         {
-            return Ok(db.SoftDeleteHouseHoldById(Id));
+            db.SoftDeleteHouseHoldById(hhId);
+            db.SoftDeleteBankAccountsByHouseHold(hhId);
+            db.SoftDeleteBudgetByHouseHold(hhId);
+            db.SoftDeleteBudgetItemByHouseHold(hhId);
+            db.SoftDeleteTransactionByHouseHold(hhId); 
+            return Ok();
         }
         #endregion
     }
