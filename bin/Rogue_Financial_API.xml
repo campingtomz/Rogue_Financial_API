@@ -1,0 +1,1207 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rogue_Financial_API</name>
+    </assembly>
+    <members>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:Rogue_Financial_API.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:Rogue_Financial_API.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:Rogue_Financial_API.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:Rogue_Financial_API.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:Rogue_Financial_API.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:Rogue_Financial_API.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,Rogue_Financial_API.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,Rogue_Financial_API.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:Rogue_Financial_API.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},Rogue_Financial_API.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.#ctor(Rogue_Financial_API.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,Rogue_Financial_API.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:Rogue_Financial_API.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rogue_Financial_API.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Rogue_Financial_API.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:Rogue_Financial_API.Controllers.BankAccountscontroller">
+            <summary>
+            Bank Accounts Controller
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BankAccountscontroller.GetBankDataByIdJson(System.Int32)">
+            <summary>
+            Gets all of the columns for a single Bank Account record, based on the PK specified 
+            </summary>
+            <remarks>Returns</remarks>
+            <param name="Id">The PK of the Bank Account</param>        
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BankAccountscontroller.GetAllBankDataJson(System.Int32)">
+            <summary>
+            Gets all of the Bank Account records, based on the HouseHold PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BankAccountscontroller.GetBankDataById(System.Int32)">
+            <summary>
+            Gets all of the columns for a single Bank Account record, based on the PK specified 
+            </summary>        
+            <param name="Id">The PK of the Bank Account</param> 
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BankAccountscontroller.GetAllBankData(System.Int32)">
+            <summary>
+            Gets all of the Bank Account records, based on the HouseHold PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BankAccountscontroller.CreateBankAccount(System.Int32,System.String,System.String,System.Decimal,System.Decimal,System.Int32)">
+            <summary>
+            create a new BankAccount and add it to the Database
+            </summary>   
+            <param name="HouseHoldId">FK of HouseHold</param>
+            <param name="OwnerId">Guid of user</param>
+            <param name="BankAccountName">Name of Bank Account</param>      
+            <param name="StartingBalance">The Starting Balance </param>
+            <param name="WarningBalance">Warning Balance: Sends alert when BankAccount reaches this value</param>
+            <param name="AccountType">Enum: Checking, Savings, MoneyMarket</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BankAccountscontroller.UpdateBankAccount(System.Int32,System.Int32,System.String,System.Decimal,System.Int32,System.Int32)">
+            <summary>
+             updates the BankAccount by its Guid
+            </summary>   
+            <param name="Id">Guid of Household</param>
+            <param name="HouseHoldId">FK of HouseHold</param>
+            <param name="BankAccountName">Name of Bank Account</param>      
+            <param name="WarningBalance">Warning Balance: Sends alert when BankAccount reaches this value</param>
+            <param name="AccountType">Enum: Checking, Savings, MoneyMarket</param>    
+            <param name="IsDeleted">Bool used for softDelete </param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BankAccountscontroller.DeleteBankAccountById(System.Int32)">
+            <summary>
+             deletes the BankAccount by its Guid
+            </summary>   
+            <param name="Id">Guid of BankAccount</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BankAccountscontroller.SoftDeleteBankAccountById(System.Int32)">
+            <summary>
+            Soft Deletes the BankAccount by its Guid. Sets the IsDeleted field to true
+            </summary>   
+            <param name="Id">Guid of BankAccount</param>
+            <returns></returns>
+        </member>
+        <member name="T:Rogue_Financial_API.Controllers.BudgetItemsController">
+            <summary>
+             BudgetItems Controller
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetItemsController.GetBudgetItemDataByIdJson(System.Int32)">
+            <summary>
+            Gets all of the columns for a single Budget Item record, based on the PK specified 
+            </summary>        
+            <param name="Id">The PK of the Budget Item</param> 
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetItemsController.GetAllBudgetItemDataJson(System.Int32)">
+            <summary>
+            Gets all of the Budget Item records, based on the HouseHold PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetItemsController.GetBudgetItemDataById(System.Int32)">
+            <summary>
+            Gets all of the columns for a single Budget Item record, based on the PK specified 
+            </summary>        
+            <param name="Id">The PK of the Budget Item</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetItemsController.GetAllBudgetItemData(System.Int32)">
+            <summary>
+            Gets all of the Budget Item records, based on the HouseHold PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetItemsController.CreateBudgetItem(System.Int32,System.String,System.Int32,System.String,System.String,System.Decimal)">
+            <summary>
+            create a new Budget Item and add it to the Database
+            </summary>   
+            /// <param name="HouseHoldId">FK of HouseHold</param>
+            <param name="OwnerId">Guid of user</param>
+            <param name="BudgetId">FK of The Budget</param>      
+            <param name="ItemName">Name of the Budget Item </param>
+            <param name="Description">Description of the BudgetItem </param>
+            <param name="TargetAmount">Target Amount or Limit of spending </param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetItemsController.UpdateBudgetItem(System.Int32,System.Int32,System.String,System.String,System.Decimal,System.Int32)">
+            <summary>
+             updates the Budget by its Guid
+            </summary>   
+            <param name="Id">Guid of Budget Item</param>
+            <param name="BudgetId">FK of Budget</param>      
+            <param name="ItemName">Name of the BudgetItem </param>
+            <param name="Description">Description of the Budget Item</param>
+            <param name="TargetAmount">Target Amount or Limit of spending </param>
+            <param name="IsDeleted">Bool used for softDelete </param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetItemsController.DeleteBudgetdById(System.Int32)">
+            <summary>
+             deletes the BudgetItem by its Guid
+            </summary>   
+            <param name="Id">Guid of Budget</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetItemsController.SoftBudgetItemDeleteById(System.Int32)">
+            <summary>
+            Soft Deletes the BudgetItem by its Guid. Sets the IsDeleted field to true
+            </summary>   
+            <param name="Id">Guid of Budget</param>
+            <returns></returns>
+        </member>
+        <member name="T:Rogue_Financial_API.Controllers.BudgetsController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetsController.GetBudgetDataByIdJson(System.Int32)">
+            <summary>
+            Gets all of the columns for a single Budget record, based on the PK specified 
+            </summary>        
+            <param name="Id">The PK of the Budget</param> 
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetsController.GetAllBudgetDataJson(System.Int32)">
+            <summary>
+            Gets all of the Budget records, based on the HouseHold PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetsController.GetBudgetDataById(System.Int32)">
+            <summary>
+            Gets all of the columns for a single Budget record, based on the PK specified 
+            </summary>        
+            <param name="Id">The PK of the Budget</param> 
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetsController.GetAllBudgetData(System.Int32)">
+            <summary>
+            Gets all of the Budget records, based on the HouseHold PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetsController.CreateBudget(System.Int32,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            create a new Budget and add it to the Database
+            </summary>   
+            <param name="HouseHoldId">FK of HouseHold</param>
+            <param name="OwnerId">Guid of user</param>
+            <param name="BankAccontId">FK of Bank Account</param>      
+            <param name="BudgetName">Name of the budget </param>
+            <param name="Description">Description of the Budget</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetsController.UpdateBudget(System.Int32,System.Int32,System.String,System.String,System.Int32)">
+            <summary>
+             updates the Budget by its Guid
+            </summary>   
+            <param name="Id">Guid of Budget</param>
+            <param name="BankAccontId">FK of Bank Account</param>      
+            <param name="BudgetName">Name of the budget </param>
+            <param name="Description">Description of the Budget</param>
+            <param name="IsDeleted">Bool used for softDelete </param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetsController.DeleteBudgetdById(System.Int32)">
+            <summary>
+             deletes the Budget by its Guid
+            </summary>   
+            <param name="Id">Guid of Budget</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetsController.SoftBudgetDeleteById(System.Int32)">
+            <summary>
+            Soft Deletes the Budget by its Guid. Sets the IsDeleted field to true
+            </summary>   
+            <param name="Id">Guid of Budget</param>
+            <returns></returns>
+        </member>
+        <member name="T:Rogue_Financial_API.Controllers.HouseHoldsController">
+            <summary>
+            HouseHold Controller
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.HouseHoldsController.GetHouseholdDataByIdJson(System.Int32)">
+            <summary>
+            Gets all of the columns for a single HouseHold record, based on the PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+            <returns>Id, OwnerId, HouseHoldName, Greeting, CreatedDate, IsDeleted</returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.HouseHoldsController.GetHouseholdAndChildDataJson(System.Int32)">
+            <summary>
+            Gets all of the columns for a single HouseHold record. As well as the Children of that HouseHold, based on the PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+            <returns>Id, OwnerId, HouseHoldName, Greeting, CreatedDate, IsDeleted</returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.HouseHoldsController.GetHouseholdDataById(System.Int32)">
+            <summary>
+            Gets all of the columns for a single HouseHold record, based on the PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+            <returns>Id, OwnerId, HouseHoldName, Greeting, CreatedDate, IsDeleted</returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.HouseHoldsController.CreateHouseHold(System.String,System.String,System.String)">
+            <summary>
+            create a new HouseHold and add it to the Database
+            </summary>   
+            <param name="OwnerId">Guid of user</param>
+            <param name="HouseHoldName">Name of the Budget Item </param>
+            <param name="Greeting">Greeting sent to a Invitation </param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.HouseHoldsController.UpdateHouseHold(System.Int32,System.String,System.String,System.String,System.Int32)">
+            <summary>
+             updates the HouseHold by its Guid
+            </summary>   
+            <param name="Id">Guid of Household</param>
+            <param name="OwnerId">Guid of user</param>
+            <param name="HouseHoldName">Name of the Budget Item </param>
+            <param name="Greeting">Greeting sent to a Invitation </param>    
+            <param name="IsDeleted">Bool used for softDelete </param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.HouseHoldsController.DeleteHouseHoldById(System.Int32)">
+            <summary>
+             deletes the HouseHold by its Guid
+            </summary>   
+            <param name="Id">Guid of HouseHold</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.HouseHoldsController.SoftDeleteHouseHoldById(System.Int32)">
+            <summary>
+            Soft Deletes the HouseHold by its Guid. Sets the IsDeleted field to true
+            </summary>   
+            <param name="Id">Guid of HouseHold</param>
+            <returns></returns>
+        </member>
+        <member name="T:Rogue_Financial_API.Controllers.MembersController">
+            <summary>
+             Members Controller
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.MembersController.GetHouseholdMemberByIdJson(System.Int32)">
+            <summary>
+            Gets all of the columns for a single Member record, based on the PK specified 
+            </summary>        
+            <param name="Id">The PK of the Member</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.MembersController.GetHouseholdMembersJson(System.Int32)">
+            <summary>
+            Gets all of the Member records, based on the HouseHold PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.MembersController.GetHouseholdMemberById(System.Int32)">
+            <summary>
+            Gets all of the columns for a single Member record, based on the PK specified 
+            </summary>        
+            <param name="Id">The PK of the Member</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.MembersController.GetHouseholdMembers(System.Int32)">
+            <summary>
+            Gets all of the Member records, based on the HouseHold PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+        </member>
+        <member name="T:Rogue_Financial_API.Controllers.TransactionsController">
+            <summary>
+            Transactions Controller 
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.TransactionsController.GetTransactionDataByIdJson(System.Int32)">
+            <summary>
+            Gets all of the columns for a single Transaction record, based on the PK specified 
+            </summary>        
+            <param name="Id">The PK of the Transaction</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.TransactionsController.GetAllTransactionDataJson(System.Int32)">
+            <summary>
+            Gets all of the Transaction records, based on the HouseHold PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.TransactionsController.GetTransactionDataById(System.Int32)">
+            <summary>
+            Gets all of the columns for a single Transaction record, based on the PK specified 
+            </summary>        
+            <param name="Id">The PK of the Transaction</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.TransactionsController.GetAllTransactionData(System.Int32)">
+            <summary>
+            Gets all of the Transaction records, based on the HouseHold PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.TransactionsController.CreateTransaction(System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.String)">
+            <summary>
+            create a new Transaction and add it to the Database
+            </summary> 
+            <param name="OwnerId">Guid of user</param>
+            <param name="BankAccontId">FK of Bank Account</param>
+            <param name="BudgetItemId">FK of Budget Item</param>      
+            <param name="TransactionType">Enum: Deposit, Withdrawal, Transfer</param>
+            <param name="Amount">Amount</param>
+            <param name="Memo">Information about this transaction</param>
+            <param name="FilePath">File Path of attachment</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.TransactionsController.UpdateTransaction(System.Int32,System.String,System.Int32,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+             updates the Budget by its Guid
+            </summary>   
+            <param name="Id">Guid of Transaction</param>
+            <param name="BankAccontId">FK of Bank Account</param>
+            <param name="BudgetItemId">FK of Budget Item</param>      
+            <param name="TransactionType">Enum: Deposit, Withdrawal, Transfer</param>
+            <param name="Amount">Amount</param>
+            <param name="Memo">Information about this transaction</param>
+            <param name="FilePath">File Path of attachment</param>
+            <param name="IsDeleted">Bool used for softDelete </param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.TransactionsController.DeleteTransactionById(System.Int32)">
+            <summary>
+             deletes the Transaction by its Guid
+            </summary>   
+            <param name="Id">Guid of Transaction</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.TransactionsController.SoftTransactionDeleteById(System.Int32)">
+            <summary>
+            Soft Deletes the Transaction by its Guid. Sets the IsDeleted field to true
+            </summary>   
+            <param name="Id">Guid of Transaction</param>
+            <returns></returns>
+        </member>
+        <member name="T:Rogue_Financial_API.Models.ApiDbContext">
+            <summary>
+            ApiDbContext
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Models.ApiDbContext.#ctor">
+            <summary>
+            Connect to Database
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.Models.ApiDbContext.GetHouseholdDataById(System.Int32)">
+            <summary>
+            Gets the HouseHold data by Id
+            </summary>
+            <remarks> 
+            </remarks>
+            <returns>Id, OwnerId, HouseHoldName, Greeting, CreatedDate, IsDeleted</returns>
+        </member>
+        <member name="T:Rogue_Financial_API.Models.BankAccount">
+            <summary>
+            Bank Account
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BankAccount.Id">
+            <summary>
+            Bank Account Id
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BankAccount.HouseHoldId">
+            <summary>
+            HouseHold Id that the Bank Account is in
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BankAccount.OwnerId">
+            <summary>
+             Owner/creator Id of the Bank Account 
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BankAccount.BankAccountName">
+            <summary>
+            Name of Bank Account
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BankAccount.Created">
+            <summary>
+             Created Date
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BankAccount.CurrentBalance">
+            <summary>
+            Current Balance 
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BankAccount.WarningBalance">
+            <summary>
+            Warning Balance
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BankAccount.IsDeleted">
+            <summary>
+            Bool for if the Bank Account is deleted
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BankAccount.AccountType">
+            <summary>
+            Account Type
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Models.Budget">
+            <summary>
+            Budget
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Budget.Id">
+            <summary>
+            Budget Id
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Budget.HouseHoldId">
+            <summary>
+            HouseHold Id that the Budget is in
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Budget.OwnerId">
+            <summary>
+            Owner/ creator Id of the Budget
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Budget.BankAccontId">
+            <summary>
+            Bank Account Id of the Bank Account associated with the budget
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Budget.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Budget.BudgetName">
+            <summary>
+            Budget Name
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Budget.CurrentAmount">
+            <summary>
+            Current Amount
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Budget.TargetAmount">
+            <summary>
+            Target Amount
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Budget.Created">
+            <summary>
+            Created Date
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Budget.IsDeleted">
+            <summary>
+            Bool for if the Budget is deleted
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Models.BudgetItem">
+            <summary>
+            BudgetItem
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BudgetItem.Id">
+            <summary>
+            BudgetItem Id
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BudgetItem.OwnerId">
+            <summary>
+            Owner/ creator Id of the BudgetItem
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BudgetItem.BudgetId">
+            <summary>
+            Budget Id of the Budget associated with the Budget Item
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BudgetItem.ItemName">
+            <summary>
+            Item Name
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BudgetItem.Created">
+            <summary>
+            Created Date
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BudgetItem.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BudgetItem.CurrentAmount">
+            <summary>
+            Current Amount
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BudgetItem.TargetAmount">
+            <summary>
+            Target Amount
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.BudgetItem.IsDeleted">
+            <summary>
+            Bool for if the BudgetItem is deleted
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Models.HouseHold">
+            <summary>
+            HouseHold
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.HouseHold.Id">
+            <summary>
+            Guid of the HouseHold
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.HouseHold.OwnerId">
+            <summary>
+            Owner Id of the Household. The current Head
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.HouseHold.HouseHoldName">
+            <summary>
+            HouseHold Name
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.HouseHold.Greeting">
+            <summary>
+            Household Greeting for when sending an Invitation 
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.HouseHold.Created">
+            <summary>
+             HouseHold Created Data
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.HouseHold.IsDeleted">
+            <summary>
+            Bool for if the HouseHold is deleted
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Models.Member">
+            <summary>
+            Member
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Member.Id">
+            <summary>
+            Id of Member
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Member.FirstName">
+            <summary>
+            First Name
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Member.LastName">
+            <summary>
+            Last Name
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Member.UserName">
+            <summary>
+            User Name
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Member.Email">
+            <summary>
+            Email Address
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Member.FullName">
+            <summary>
+            Full Name
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Member.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Member.AvatarPath">
+            <summary>
+            Avatar Path
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Member.PhoneNumber">
+            <summary>
+            Phone Number
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Member.HouseHoldId">
+            <summary>
+            HouseHold Id
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.Models.Transaction">
+            <summary>
+            Transaction
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Transaction.Id">
+            <summary>
+            Transaction Id
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Transaction.OwnerId">
+            <summary>
+            Owner/ creator Id of the Transaction
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Transaction.BankAccontId">
+            <summary>
+            Bank Account Id of the Bank Account associated with the Transaction
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Transaction.BudgetItemId">
+            <summary>
+            Budget Item Id of the Budget Item associated with the Transaction
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Transaction.Created">
+            <summary>
+            Created
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Transaction.Amount">
+            <summary>
+            Amount
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Transaction.Memo">
+            <summary>
+            Memo
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Transaction.FilePath">
+            <summary>
+            File Path
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Transaction.IsDeleted">
+            <summary>
+            Bool for if the Transaction is deleted
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.Models.Transaction.TransactionType">
+            <summary>
+            Transaction Type
+            </summary>
+        </member>
+        <member name="T:RogueFinancialPortal.Enums.AccountType">
+            <summary>
+            Account Type Enum
+            </summary>
+        </member>
+        <member name="F:RogueFinancialPortal.Enums.AccountType.Checking">
+            <summary>
+            Checking
+            </summary>
+        </member>
+        <member name="F:RogueFinancialPortal.Enums.AccountType.Savings">
+            <summary>
+            Savings
+            </summary>
+        </member>
+        <member name="F:RogueFinancialPortal.Enums.AccountType.MoneyMakert">
+            <summary>
+            MoneyMarket
+            </summary>
+        </member>
+        <member name="T:RogueFinancialPortal.Enums.TransactionType">
+            <summary>
+            Transaction Type Enum
+            </summary>
+        </member>
+        <member name="F:RogueFinancialPortal.Enums.TransactionType.Deposit">
+            <summary>
+            Deposit
+            </summary>
+        </member>
+        <member name="F:RogueFinancialPortal.Enums.TransactionType.Withdrawal">
+            <summary>
+            Withdrawal
+            </summary>
+        </member>
+        <member name="F:RogueFinancialPortal.Enums.TransactionType.Transfer">
+            <summary>
+            Transfer
+            </summary>
+        </member>
+        <member name="F:RogueFinancialPortal.Enums.TransactionType.Refund">
+            <summary>
+            Refund
+            </summary>
+        </member>
+    </members>
+</doc>
