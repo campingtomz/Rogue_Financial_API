@@ -63,7 +63,11 @@ namespace Rogue_Financial_API.Models
 
         #endregion
         #region Get all data
-        
+        public async Task<List<HouseHold>> GetHouseholdAndChildData(int hhId)
+        {
+            return await Database.SqlQuery<HouseHold>("[GetHouseholdAndChildData] @hhId",
+                new SqlParameter("hhId", hhId)).ToListAsync();
+        }
         public async Task<List<BankAccount>> GetAllBankData(int hhId)
         {
             return await Database.SqlQuery<BankAccount>("[GetAllBankData] @hhId",

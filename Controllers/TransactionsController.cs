@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Rogue_Financial_API.Models;
+using Rogue_Financial_API.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -130,10 +131,17 @@ namespace Rogue_Financial_API.Controllers
         /// <param name="Id">Guid of BankAccount</param>
 
         /// <returns></returns>
-        [HttpPost, Route("DeleteTransactionById")]
-        public IHttpActionResult DeleteTransactionById(int Id)
+        [HttpPost, Route("GetBankAndTransactionData")]
+        public async Task<GetBankAndTransactionDataVM> GetBankAndTransactionData(int Id)
         {
-            return Ok(db.DeleteTransactionById(Id));
+            var  transactionByBankAccount =  await db.GetBankAndTransactionData(Id);
+            var  bankAccount = await db.GetBankDataById(Id);
+            var newGetBankAndTransactionData = new GetBankAndTransactionDataVM()
+            {
+                BankAccount = bankAccount,
+                Transactions = transactionByBankAccount
+            };
+            return newGetBankAndTransactionData;
         }
         #endregion
     }

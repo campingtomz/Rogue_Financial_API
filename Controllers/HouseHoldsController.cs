@@ -57,21 +57,21 @@ namespace Rogue_Financial_API.Controllers
         public async Task<HouseHoldAndChildVM> GetHouseholdAndChildData(int hhId)
         {
              
-            //var householdData = await db.GetHouseholdDataById(hhId);
-            //var householdBankAccountsData = await db.GetAllBankData(hhId);
-            //var householdBudgetsData = await db.GetAllBudgetData(hhId);
-            //var householdBudgetItemsData = await db.GetAllBudgetItemData(hhId);
-            //var householdTransactiontsData = await db.GetAllTransactionData(hhId);
-            //var householdMembersData = await db.GetHouseholdMembers(hhId);
+            var householdData = await db.GetHouseholdDataById(hhId);
+            var householdBankAccountsData = await db.GetAllBankData(hhId);
+            var householdBudgetsData = await db.GetAllBudgetData(hhId);
+            var householdBudgetItemsData = await db.GetAllBudgetItemData(hhId);
+            var householdTransactiontsData = await db.GetAllTransactionData(hhId);
+            var householdMembersData = await db.GetHouseholdMembers(hhId);
 
             var newHouseHoldAndChild = new HouseHoldAndChildVM()
             {
-                HouseHold = await db.GetHouseholdDataById(hhId),
-                BankAccounts = await db.GetAllBankData(hhId),
-                Budgets = await db.GetAllBudgetData(hhId),
-                BudgetItems = await db.GetAllBudgetItemData(hhId),
-                Transactions = await db.GetAllTransactionData(hhId),
-                Members = await db.GetHouseholdMembers(hhId)
+                HouseHold = householdData,
+                BankAccounts = householdBankAccountsData,
+                Budgets = householdBudgetsData,
+                BudgetItems = householdBudgetItemsData,
+                Transactions = householdTransactiontsData,
+                Members = householdMembersData
             };
 
             return newHouseHoldAndChild;
