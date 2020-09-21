@@ -104,7 +104,7 @@ namespace Rogue_Financial_API.Controllers
         /// <param name="Id">Guid of Budget</param>
 
         /// <returns></returns>
-        [HttpPost, Route("DeleteBudgetItemById")]
+        [HttpDelete, Route("DeleteBudgetItemById")]
         public IHttpActionResult DeleteBudgetdById(int Id)
         {
             return Ok(db.DeleteBudgetById(Id));
@@ -115,12 +115,34 @@ namespace Rogue_Financial_API.Controllers
         /// <param name="Id">Guid of Budget</param>
 
         /// <returns></returns>
-        [HttpPost, Route("SoftBudgetItemDeleteById")]
+        [HttpDelete, Route("SoftBudgetItemDeleteById")]
         public IHttpActionResult SoftBudgetItemDeleteById(int Id)
         {
             db.SoftBudgetItemDeleteById(Id);
             db.SoftDeleteTransactionByBudgetItem(Id); 
             return Ok();
+        }
+        /// <summary>
+        /// Soft Deletes the BudgetItem by the Budget Guid. Sets the IsDeleted field to true
+        /// </summary>   
+        /// <param name="Id">Guid of Budget</param>
+
+        /// <returns></returns>
+        [HttpDelete, Route("SoftDeleteBudgetItemByBudget")]
+        public IHttpActionResult SoftDeleteBudgetItemByBudget(int Id)
+        {
+            return Ok(db.SoftDeleteBudgetItemByBudget(Id));
+        }
+        /// <summary>
+        /// Soft Deletes the BudgetItem by the BankAccount Guid. Sets the IsDeleted field to true
+        /// </summary>   
+        /// <param name="Id">Guid of BankAccount</param>
+
+        /// <returns></returns>
+        [HttpDelete, Route("SoftDeleteBudgetByBankAccount")]
+        public IHttpActionResult SoftDeleteBudgetByBankAccount(int Id)
+        {
+            return Ok(db.SoftDeleteBudgetByBankAccount(Id));
         }
         #endregion
     }

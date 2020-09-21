@@ -67,7 +67,7 @@ namespace Rogue_Financial_API.Controllers
         /// create a new Transaction and add it to the Database
         /// </summary> 
         /// <param name="OwnerId">Guid of user</param>
-        /// <param name="BankAccontId">FK of Bank Account</param>
+        /// <param name="BankAccountId">FK of Bank Account</param>
         /// <param name="BudgetItemId">FK of Budget Item</param>      
         /// <param name="TransactionType">Enum: Deposit, Withdrawal, Transfer</param>
         /// <param name="Amount">Amount</param>
@@ -75,9 +75,9 @@ namespace Rogue_Financial_API.Controllers
         /// <param name="FilePath">File Path of attachment</param>
         /// <returns></returns>
         [HttpPost, Route("CreateTransaction")]
-        public IHttpActionResult CreateTransaction(int OwnerId, int BankAccontId, int BudgetItemId, string TransactionType, string Amount, string Memo, string FilePath)
+        public IHttpActionResult CreateTransaction(int OwnerId, int BankAccountId, int BudgetItemId, string TransactionType, string Amount, string Memo, string FilePath)
         {
-            return Ok(db.CreateTransaction(OwnerId, BankAccontId, BudgetItemId, TransactionType, Amount, Memo, FilePath));
+            return Ok(db.CreateTransaction(OwnerId, BankAccountId, BudgetItemId, TransactionType, Amount, Memo, FilePath));
         }
 
         #endregion
@@ -86,7 +86,7 @@ namespace Rogue_Financial_API.Controllers
         ///  updates the Budget by its Guid
         /// </summary>   
         /// <param name="Id">Guid of Transaction</param>
-        /// <param name="BankAccontId">FK of Bank Account</param>
+        /// <param name="BankAccountId">FK of Bank Account</param>
         /// <param name="BudgetItemId">FK of Budget Item</param>      
         /// <param name="TransactionType">Enum: Deposit, Withdrawal, Transfer</param>
         /// <param name="Amount">Amount</param>
@@ -95,9 +95,9 @@ namespace Rogue_Financial_API.Controllers
         /// <param name="IsDeleted">Bool used for softDelete </param>
         /// <returns></returns>
         [HttpPost, Route("UpdateTransaction")]
-        public IHttpActionResult UpdateTransaction(int Id, string BankAccontId, int BudgetItemId, string TransactionType, string Amount, string Memo, string FilePath, int IsDeleted)
+        public IHttpActionResult UpdateTransaction(int Id, string BankAccountId, int BudgetItemId, string TransactionType, string Amount, string Memo, string FilePath, int IsDeleted)
         {
-            return Ok(db.UpdateTransaction(Id, BankAccontId, BudgetItemId, TransactionType, Amount, Memo, FilePath, IsDeleted));
+            return Ok(db.UpdateTransaction(Id, BankAccountId, BudgetItemId, TransactionType, Amount, Memo, FilePath, IsDeleted));
         }
         #endregion
         #region delete Transaction
@@ -107,7 +107,7 @@ namespace Rogue_Financial_API.Controllers
         /// <param name="Id">Guid of Transaction</param>
 
         /// <returns></returns>
-        [HttpPost, Route("DeleteTransactionById")]
+        [HttpDelete, Route("DeleteTransactionById")]
         public IHttpActionResult DeleteTransactionById(int Id)
         {
             return Ok(db.DeleteTransactionById(Id));
@@ -118,10 +118,43 @@ namespace Rogue_Financial_API.Controllers
         /// <param name="Id">Guid of Transaction</param>
 
         /// <returns></returns>
-        [HttpPost, Route("SoftTransactionDeleteById")]
+        [HttpDelete, Route("SoftTransactionDeleteById")]
         public IHttpActionResult SoftTransactionDeleteById(int Id)
         {
             return Ok(db.SoftTransactionDeleteById(Id));
+        }
+        /// <summary>
+        /// Soft Deletes the Transactions by the Bank Account Guid. Sets the IsDeleted field to true
+        /// </summary>   
+        /// <param name="Id">Guid of BankAccount</param>
+
+        /// <returns></returns>
+        [HttpDelete, Route("SoftDeleteTransactionByBankAccount")]
+        public IHttpActionResult SoftDeleteTransactionByBankAccount(int Id)
+        {
+            return Ok(db.SoftDeleteTransactionByBankAccount(Id));
+        }
+        /// <summary>
+        /// Soft Deletes the Transactions by the Budget Guid. Sets the IsDeleted field to true
+        /// </summary>   
+        /// <param name="Id">Guid of Budget</param>
+
+        /// <returns></returns>
+        [HttpDelete, Route("SoftDeleteTransactionByBudget")]
+        public IHttpActionResult SoftDeleteTransactionByBudget(int Id)
+        {
+            return Ok(db.SoftDeleteTransactionByBudget(Id));
+        }
+        /// <summary>
+        /// Soft Deletes the Transactions by the BugetItem Guid. Sets the IsDeleted field to true
+        /// </summary>   
+        /// <param name="Id">Guid of BugetItem</param>
+
+        /// <returns></returns>
+        [HttpDelete, Route("SoftDeleteTransactionByBudgetItem")]
+        public IHttpActionResult SoftDeleteTransactionByBudgetItem(int Id)
+        {
+            return Ok(db.SoftDeleteTransactionByBudgetItem(Id));
         }
         #endregion
         #region get Transactions by BankAccountId

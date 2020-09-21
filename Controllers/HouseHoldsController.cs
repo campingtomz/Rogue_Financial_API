@@ -53,6 +53,11 @@ namespace Rogue_Financial_API.Controllers
         {
             return await db.GetHouseholdDataById(hhId);
         }
+        ///<summary>
+        ///Gets all of the columns for a single HouseHold record, based on the PK specified 
+        ///</summary>        
+        ///<param name="hhId">The PK of the HouseHold</param>
+        ///<returns>Id, OwnerId, HouseHoldName, Greeting, CreatedDate, IsDeleted</returns>
         [Route("GetHouseholdAndChildData")]
         public async Task<HouseHoldAndChildVM> GetHouseholdAndChildData(int hhId)
         {
@@ -114,7 +119,7 @@ namespace Rogue_Financial_API.Controllers
         /// <param name="Id">Guid of HouseHold</param>
 
         /// <returns></returns>
-        [HttpPost, Route("DeleteHouseHoldById")]
+        [HttpDelete, Route("DeleteHouseHoldById")]
         public IHttpActionResult DeleteHouseHoldById(int Id)
         {
             return Ok(db.DeleteHouseHoldById(Id));
@@ -122,10 +127,10 @@ namespace Rogue_Financial_API.Controllers
         /// <summary>
         /// Soft Deletes the HouseHold by its Guid. Sets the IsDeleted field to true
         /// </summary>   
-        /// <param name="Id">Guid of HouseHold</param>
+        /// <param name="hhId">Guid of HouseHold</param>
 
         /// <returns></returns>
-        [HttpPost, Route("SoftDeleteHouseHoldById")]
+        [HttpDelete, Route("SoftDeleteHouseHoldById")]
         public IHttpActionResult SoftDeleteHouseHoldById(int hhId)
         {
             db.SoftDeleteHouseHoldById(hhId);

@@ -616,6 +616,20 @@
             <param name="Id">Guid of Budget</param>
             <returns></returns>
         </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetItemsController.SoftDeleteBudgetItemByBudget(System.Int32)">
+            <summary>
+            Soft Deletes the BudgetItem by the Budget Guid. Sets the IsDeleted field to true
+            </summary>   
+            <param name="Id">Guid of Budget</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.BudgetItemsController.SoftDeleteBudgetByBankAccount(System.Int32)">
+            <summary>
+            Soft Deletes the BudgetItem by the BankAccount Guid. Sets the IsDeleted field to true
+            </summary>   
+            <param name="Id">Guid of BankAccount</param>
+            <returns></returns>
+        </member>
         <member name="T:Rogue_Financial_API.Controllers.BudgetsController">
             <summary>
             
@@ -651,7 +665,7 @@
             </summary>   
             <param name="HouseHoldId">FK of HouseHold</param>
             <param name="OwnerId">Guid of user</param>
-            <param name="BankAccontId">FK of Bank Account</param>      
+            <param name="BankAccountId">FK of Bank Account</param>      
             <param name="BudgetName">Name of the budget </param>
             <param name="Description">Description of the Budget</param>
             <returns></returns>
@@ -661,7 +675,7 @@
              updates the Budget by its Guid
             </summary>   
             <param name="Id">Guid of Budget</param>
-            <param name="BankAccontId">FK of Bank Account</param>      
+            <param name="BankAccountId">FK of Bank Account</param>      
             <param name="BudgetName">Name of the budget </param>
             <param name="Description">Description of the Budget</param>
             <param name="IsDeleted">Bool used for softDelete </param>
@@ -707,6 +721,13 @@
             <param name="hhId">The PK of the HouseHold</param>
             <returns>Id, OwnerId, HouseHoldName, Greeting, CreatedDate, IsDeleted</returns>
         </member>
+        <member name="M:Rogue_Financial_API.Controllers.HouseHoldsController.GetHouseholdAndChildData(System.Int32)">
+            <summary>
+            Gets all of the columns for a single HouseHold record, based on the PK specified 
+            </summary>        
+            <param name="hhId">The PK of the HouseHold</param>
+            <returns>Id, OwnerId, HouseHoldName, Greeting, CreatedDate, IsDeleted</returns>
+        </member>
         <member name="M:Rogue_Financial_API.Controllers.HouseHoldsController.CreateHouseHold(System.String,System.String,System.String)">
             <summary>
             create a new HouseHold and add it to the Database
@@ -738,7 +759,7 @@
             <summary>
             Soft Deletes the HouseHold by its Guid. Sets the IsDeleted field to true
             </summary>   
-            <param name="Id">Guid of HouseHold</param>
+            <param name="hhId">Guid of HouseHold</param>
             <returns></returns>
         </member>
         <member name="T:Rogue_Financial_API.Controllers.MembersController">
@@ -804,7 +825,7 @@
             create a new Transaction and add it to the Database
             </summary> 
             <param name="OwnerId">Guid of user</param>
-            <param name="BankAccontId">FK of Bank Account</param>
+            <param name="BankAccountId">FK of Bank Account</param>
             <param name="BudgetItemId">FK of Budget Item</param>      
             <param name="TransactionType">Enum: Deposit, Withdrawal, Transfer</param>
             <param name="Amount">Amount</param>
@@ -817,7 +838,7 @@
              updates the Budget by its Guid
             </summary>   
             <param name="Id">Guid of Transaction</param>
-            <param name="BankAccontId">FK of Bank Account</param>
+            <param name="BankAccountId">FK of Bank Account</param>
             <param name="BudgetItemId">FK of Budget Item</param>      
             <param name="TransactionType">Enum: Deposit, Withdrawal, Transfer</param>
             <param name="Amount">Amount</param>
@@ -838,6 +859,34 @@
             Soft Deletes the Transaction by its Guid. Sets the IsDeleted field to true
             </summary>   
             <param name="Id">Guid of Transaction</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.TransactionsController.SoftDeleteTransactionByBankAccount(System.Int32)">
+            <summary>
+            Soft Deletes the Transactions by the Bank Account Guid. Sets the IsDeleted field to true
+            </summary>   
+            <param name="Id">Guid of BankAccount</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.TransactionsController.SoftDeleteTransactionByBudget(System.Int32)">
+            <summary>
+            Soft Deletes the Transactions by the Budget Guid. Sets the IsDeleted field to true
+            </summary>   
+            <param name="Id">Guid of Budget</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.TransactionsController.SoftDeleteTransactionByBudgetItem(System.Int32)">
+            <summary>
+            Soft Deletes the Transactions by the BugetItem Guid. Sets the IsDeleted field to true
+            </summary>   
+            <param name="Id">Guid of BugetItem</param>
+            <returns></returns>
+        </member>
+        <member name="M:Rogue_Financial_API.Controllers.TransactionsController.GetBankAndTransactionData(System.Int32)">
+            <summary>
+             Gets Transactions by BankAccount Guid
+            </summary>   
+            <param name="Id">Guid of BankAccount</param>
             <returns></returns>
         </member>
         <member name="T:Rogue_Financial_API.Models.ApiDbContext">
@@ -928,7 +977,7 @@
             Owner/ creator Id of the Budget
             </summary>
         </member>
-        <member name="P:Rogue_Financial_API.Models.Budget.BankAccontId">
+        <member name="P:Rogue_Financial_API.Models.Budget.BankAccountId">
             <summary>
             Bank Account Id of the Bank Account associated with the budget
             </summary>
@@ -1118,7 +1167,7 @@
             Owner/ creator Id of the Transaction
             </summary>
         </member>
-        <member name="P:Rogue_Financial_API.Models.Transaction.BankAccontId">
+        <member name="P:Rogue_Financial_API.Models.Transaction.BankAccountId">
             <summary>
             Bank Account Id of the Bank Account associated with the Transaction
             </summary>
@@ -1156,6 +1205,66 @@
         <member name="P:Rogue_Financial_API.Models.Transaction.TransactionType">
             <summary>
             Transaction Type
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.ViewModel.GetBankAndTransactionDataVM">
+            <summary>
+            Gets the Transaction and Bank Account Data
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.ViewModel.GetBankAndTransactionDataVM.BankAccount">
+            <summary>
+            Bank Account Object
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.ViewModel.GetBankAndTransactionDataVM.Transactions">
+            <summary>
+            List Of Transactions 
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.ViewModel.GetBankAndTransactionDataVM.#ctor">
+            <summary>
+            Method for initializing Transactions 
+            </summary>
+        </member>
+        <member name="T:Rogue_Financial_API.ViewModel.HouseHoldAndChildVM">
+            <summary>
+            Model for getting HouseHold and the child data
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.ViewModel.HouseHoldAndChildVM.HouseHold">
+            <summary>
+            HouseHold Object
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.ViewModel.HouseHoldAndChildVM.BankAccounts">
+            <summary>
+            List of Bank Accounts
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.ViewModel.HouseHoldAndChildVM.Budgets">
+            <summary>
+            List of Budgets
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.ViewModel.HouseHoldAndChildVM.BudgetItems">
+            <summary>
+            List of Budget Items
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.ViewModel.HouseHoldAndChildVM.Transactions">
+            <summary>
+            List of Transactions
+            </summary>
+        </member>
+        <member name="P:Rogue_Financial_API.ViewModel.HouseHoldAndChildVM.Members">
+            <summary>
+            List of Members
+            </summary>
+        </member>
+        <member name="M:Rogue_Financial_API.ViewModel.HouseHoldAndChildVM.#ctor">
+            <summary>
+            Method for initializing BankAccounts,Budgets,BudgetItems, Transactions, Members 
             </summary>
         </member>
         <member name="T:RogueFinancialPortal.Enums.AccountType">

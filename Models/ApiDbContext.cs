@@ -243,12 +243,12 @@ namespace Rogue_Financial_API.Models
                 new SqlParameter("WarningBalance", WarningBalance),
                 new SqlParameter("AccountType", AccountType));
         }
-        public int CreateBudget(int HouseHoldId, string OwnerId, int BankAccontId, string BudgetName, string Description)
+        public int CreateBudget(int HouseHoldId, string OwnerId, int BankAccountId, string BudgetName, string Description)
         {
-            return Database.ExecuteSqlCommand("InsertBudgetData @HouseHoldId @OwnerId @BankAccontId @BudgetName @Description ",
+            return Database.ExecuteSqlCommand("InsertBudgetData @HouseHoldId @OwnerId @BankAccountId @BudgetName @Description ",
                 new SqlParameter("HouseHoldId", HouseHoldId),
                 new SqlParameter("OwnerId", OwnerId),
-                new SqlParameter("BankAccontId", BankAccontId),
+                new SqlParameter("BankAccountId", BankAccountId),
                 new SqlParameter("BudgetName", BudgetName),
                 new SqlParameter("Description", Description)
                 );
@@ -265,11 +265,11 @@ namespace Rogue_Financial_API.Models
 
                 );
         }
-        public int CreateTransaction(int OwnerId, int BankAccontId, int BudgetItemId, string TransactionType, string Amount, string Memo, string FilePath)
+        public int CreateTransaction(int OwnerId, int BankAccountId, int BudgetItemId, string TransactionType, string Amount, string Memo, string FilePath)
         {
-            return Database.ExecuteSqlCommand("InsertTransactionData @OwnerId @BankAccontId @BudgetItemId @TransactionType @Amount @Memo @FilePath",
+            return Database.ExecuteSqlCommand("InsertTransactionData @OwnerId @BankAccountId @BudgetItemId @TransactionType @Amount @Memo @FilePath",
                 new SqlParameter("OwnerId", OwnerId),
-                new SqlParameter("BankAccontId", BankAccontId),
+                new SqlParameter("BankAccountId", BankAccountId),
                 new SqlParameter("BudgetItemId", BudgetItemId),
                 new SqlParameter("TransactionType", TransactionType),
                 new SqlParameter("Amount", Amount),
@@ -312,12 +312,12 @@ namespace Rogue_Financial_API.Models
                 new SqlParameter("AccountType", AccountType),
                 new SqlParameter("IsDeleted", IsDeleted));
         }
-        public int UpdateBudget(int Id, int BankAccontId, string BudgetName, string Description, int IsDeleted)
+        public int UpdateBudget(int Id, int BankAccountId, string BudgetName, string Description, int IsDeleted)
         {
-            return Database.ExecuteSqlCommand("UpdateBudgetDataById @Id @BankAccontId @BudgetName @Description  @IsDeleted",
+            return Database.ExecuteSqlCommand("UpdateBudgetDataById @Id @BankAccountId @BudgetName @Description  @IsDeleted",
 
                 new SqlParameter("Id", Id),
-                new SqlParameter("BankAccontId", BankAccontId),
+                new SqlParameter("BankAccountId", BankAccountId),
                 new SqlParameter("BudgetName", BudgetName),
                 new SqlParameter("Description", Description),
                 new SqlParameter("IsDeleted", IsDeleted)
@@ -334,11 +334,11 @@ namespace Rogue_Financial_API.Models
                 new SqlParameter("IsDeleted", IsDeleted)
                 );
         }
-        public int UpdateTransaction(int Id, string BankAccontId, int BudgetItemId, string TransactionType, string Amount, string Memo, string FilePath, int IsDeleted)
+        public int UpdateTransaction(int Id, string BankAccountId, int BudgetItemId, string TransactionType, string Amount, string Memo, string FilePath, int IsDeleted)
         {
-            return Database.ExecuteSqlCommand("InsertMemberData @Id @BankAccontId @BudgetItemId @TransactionType @Amount @Memo @FilePath @IsDeleted",
+            return Database.ExecuteSqlCommand("InsertMemberData @Id @BankAccountId @BudgetItemId @TransactionType @Amount @Memo @FilePath @IsDeleted",
                 new SqlParameter("Id", Id),
-                new SqlParameter("BankAccontId", BankAccontId),
+                new SqlParameter("BankAccountId", BankAccountId),
                 new SqlParameter("BudgetItemId", BudgetItemId),
                 new SqlParameter("TransactionType", TransactionType),
                 new SqlParameter("Amount", Amount),

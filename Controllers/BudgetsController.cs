@@ -67,14 +67,14 @@ namespace Rogue_Financial_API.Controllers
         /// </summary>   
         /// <param name="HouseHoldId">FK of HouseHold</param>
         /// <param name="OwnerId">Guid of user</param>
-        /// <param name="BankAccontId">FK of Bank Account</param>      
+        /// <param name="BankAccountId">FK of Bank Account</param>      
         /// <param name="BudgetName">Name of the budget </param>
         /// <param name="Description">Description of the Budget</param>
         /// <returns></returns>
         [HttpPost, Route("CreateBudget")]
-        public IHttpActionResult CreateBudget(int HouseHoldId, string OwnerId, int BankAccontId, string BudgetName, string Description)
+        public IHttpActionResult CreateBudget(int HouseHoldId, string OwnerId, int BankAccountId, string BudgetName, string Description)
         {
-            return Ok(db.CreateBudget(HouseHoldId, OwnerId, BankAccontId, BudgetName, Description));
+            return Ok(db.CreateBudget(HouseHoldId, OwnerId, BankAccountId, BudgetName, Description));
         }
 
         #endregion
@@ -84,15 +84,15 @@ namespace Rogue_Financial_API.Controllers
         ///  updates the Budget by its Guid
         /// </summary>   
         /// <param name="Id">Guid of Budget</param>
-        /// <param name="BankAccontId">FK of Bank Account</param>      
+        /// <param name="BankAccountId">FK of Bank Account</param>      
         /// <param name="BudgetName">Name of the budget </param>
         /// <param name="Description">Description of the Budget</param>
         /// <param name="IsDeleted">Bool used for softDelete </param>
         /// <returns></returns>
         [HttpPost, Route("UpdateBudget")]
-        public IHttpActionResult UpdateBudget(int Id, int BankAccontId, string BudgetName, string Description, int IsDeleted)
+        public IHttpActionResult UpdateBudget(int Id, int BankAccountId, string BudgetName, string Description, int IsDeleted)
         {
-            return Ok(db.UpdateBudget(Id, BankAccontId, BudgetName, Description, IsDeleted));
+            return Ok(db.UpdateBudget(Id, BankAccountId, BudgetName, Description, IsDeleted));
         }
         #endregion
         #region delete Budget
@@ -102,7 +102,7 @@ namespace Rogue_Financial_API.Controllers
         /// <param name="Id">Guid of Budget</param>
        
         /// <returns></returns>
-        [HttpPost, Route("DeleteBudgetById")]
+        [HttpDelete, Route("DeleteBudgetById")]
         public IHttpActionResult DeleteBudgetdById(int Id)
         {
             return Ok(db.DeleteBudgetById(Id));
@@ -113,7 +113,7 @@ namespace Rogue_Financial_API.Controllers
         /// <param name="Id">Guid of Budget</param>
 
         /// <returns></returns>
-        [HttpPost, Route("SoftBudgetDeleteById")]
+        [HttpDelete, Route("SoftBudgetDeleteById")]
         public IHttpActionResult SoftBudgetDeleteById(int Id)
         {
             db.SoftBudgetDeleteById(Id);

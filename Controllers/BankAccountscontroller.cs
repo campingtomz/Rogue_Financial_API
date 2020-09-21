@@ -105,7 +105,7 @@ namespace Rogue_Financial_API.Controllers
         /// <param name="Id">Guid of BankAccount</param>
 
         /// <returns></returns>
-        [HttpPost, Route("DeleteBankAccountById")]
+        [HttpDelete, Route("DeleteBankAccountById")]
         public IHttpActionResult DeleteBankAccountById(int Id)
         {
             return Ok(db.DeleteBankAccountById(Id));
@@ -116,7 +116,7 @@ namespace Rogue_Financial_API.Controllers
         /// <param name="Id">Guid of BankAccount</param>
 
         /// <returns></returns>
-        [HttpPost, Route("SoftDeleteBankAccountById")]
+        [HttpDelete, Route("SoftDeleteBankAccountById")]
         public IHttpActionResult SoftDeleteBankAccountById(int Id)
         {
             db.SoftDeleteBankAccountById(Id);

@@ -22,7 +22,7 @@ namespace Rogue_Financial_API.Models
         ///<summary>
         ///Bank Account Id of the Bank Account associated with the Transaction
         ///</summary>
-        public int BankAccontId { get; set; }
+        public int BankAccountId { get; set; }
         ///<summary>
         ///Budget Item Id of the Budget Item associated with the Transaction
         ///</summary>

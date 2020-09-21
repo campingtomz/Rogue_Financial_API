@@ -27,7 +27,7 @@ namespace Rogue_Financial_API.Models
         ///<summary>
         ///Bank Account Id of the Bank Account associated with the budget
         ///</summary>
-        public int BankAccontId { get; set; }
+        public int BankAccountId { get; set; }
         ///<summary>
         ///Description
         ///</summary>
